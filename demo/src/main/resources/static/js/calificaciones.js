@@ -42,7 +42,7 @@ $(function () {
                     alert(result.msg);
                 } else {
                     console.log(result);
-                    alert(resJSON.msg);
+                    alert(result.msg);
                 }
             }
         });
@@ -57,10 +57,10 @@ $(function () {
         const data = {
 			"id_t_calificaciones": dataCalificacion.id_t_calificaciones,
 			"alumno": {
-                "id_t_usuarios": dataCalificacion.id_t_usuarios
+                "id_t_usuarios": dataCalificacion.alumno.id_t_usuarios
             },
             "materias": {
-                "id_t_materias": dataCalificacion.id_t_materias
+                "id_t_materias": dataCalificacion.materias.id_t_materias
             },
             "calificacion": $("#inputCalificacionUPD").val(),
             "fecha_registro": fecha.toISOString()
@@ -80,7 +80,7 @@ $(function () {
                     alert(result.msg);
                 } else {
                     console.log(result);
-                    alert(resJSON.msg);
+                    alert(result.msg);
                 }
             }
         });
@@ -145,6 +145,7 @@ function updateCalificacion(id) {
             success: function (result) {
                 if (result.id_t_calificaciones === id) {
 					dataCalificacion = result;
+					
                     $("#divCardModificar").removeAttr("hidden");
                     $("#inputAlumno").val(result.alumno.nombre + " " + result.alumno.ap_paterno + " " + result.alumno.ap_materno);
 					$("#inputMateria").val(result.materias.nombre);
@@ -178,7 +179,7 @@ function deleteCalificacion(event) {
                 alert(result.msg);
             } else {
                 console.log(result);
-                alert(resJSON.msg);
+                alert(result.msg);
             }
         }
     });
